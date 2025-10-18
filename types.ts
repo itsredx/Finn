@@ -9,10 +9,7 @@ export type Page =
   | 'wallet-transaction-details'
   | 'virtual-account-details'
   | 'request-payout'
-  | 'rates-and-quotes'
-  | 'signin'
-  | 'signup'
-  | 'forgot-password';
+  | 'rates-and-quotes';
 
 export enum ChangeType {
   Increase = 'increase',
