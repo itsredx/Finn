@@ -9,11 +9,15 @@ import VirtualAccountDetailsPage from './pages/VirtualAccountDetailsPage';
 import CreateTransferPage from './pages/CreateTransferPage';
 import RequestPayoutPage from './pages/RequestPayoutPage';
 import RatesAndQuotesPage from './pages/RatesAndQuotesPage';
+import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import { Page, Transaction, VirtualAccount, VirtualAccountStatus } from './types';
 import { ALL_TRANSACTIONS_DATA, VIRTUAL_ACCOUNTS_DATA } from './constants';
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<Page>('dashboard');
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [currentPage, setCurrentPage] = useState<Page>('signin');
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const [selectedVirtualAccount, setSelectedVirtualAccount] = useState<VirtualAccount | null>(null);
   const [virtualAccounts, setVirtualAccounts] = useState<VirtualAccount[]>(VIRTUAL_ACCOUNTS_DATA);
@@ -21,6 +25,11 @@ const App: React.FC = () => {
   const handleNavigate = (page: Page) => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
+  };
+
+  const handleAuthSuccess = () => {
+    setIsAuthenticated(true);
+    setCurrentPage('dashboard');
   };
   
   const handleViewTransaction = (transactionId: string) => {
@@ -59,6 +68,21 @@ const App: React.FC = () => {
   };
 
   const renderPage = () => {
+    // If not authenticated, show auth pages
+    if (!isAuthenticated) {
+      switch (currentPage) {
+        case 'signin':
+          return <SignInPage onNavigate={handleNavigate} onAuthSuccess={handleAuthSuccess} />;
+        case 'signup':
+          return <SignUpPage onNavigate={handleNavigate} onAuthSuccess={handleAuthSuccess} />;
+        case 'forgot-password':
+          return <ForgotPasswordPage onNavigate={handleNavigate} />;
+        default:
+          return <SignInPage onNavigate={handleNavigate} onAuthSuccess={handleAuthSuccess} />;
+      }
+    }
+
+    // Authenticated pages
     switch (currentPage) {
       case 'dashboard':
         return <Dashboard onNavigate={handleNavigate} />;
