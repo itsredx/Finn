@@ -1,8 +1,8 @@
 import React from 'react';
-import { TransactionStatus, KycStatus, VirtualAccountStatus } from '../types';
+import { TransactionStatus, KycStatus, VirtualAccountStatus, QuoteStatus } from '../types';
 
 interface StatusBadgeProps {
-  status: TransactionStatus | KycStatus | VirtualAccountStatus;
+  status: TransactionStatus | KycStatus | VirtualAccountStatus | QuoteStatus;
 }
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
@@ -13,29 +13,31 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
     case TransactionStatus.Completed:
     case KycStatus.Approved:
     case VirtualAccountStatus.Active:
-      statusText = 'Confirmed';
-      if (status === KycStatus.Approved) statusText = 'Approved';
-      if (status === VirtualAccountStatus.Active) statusText = 'Active';
-      statusClasses = 'bg-green-100 text-green-800';
+    case QuoteStatus.Active:
+      statusText = status === QuoteStatus.Active ? 'Active' : (status === TransactionStatus.Completed ? 'Confirmed' : status);
+      statusClasses = 'bg-[#E9F9F0] text-[#008A38]';
       break;
+    
     case TransactionStatus.Pending:
     case KycStatus.Pending:
     case VirtualAccountStatus.Pending:
       statusText = 'Pending';
-      statusClasses = 'bg-yellow-100 text-yellow-800';
+      statusClasses = 'bg-[#FFF7E6] text-[#D46B08]';
       break;
+    
     case TransactionStatus.Failed:
     case KycStatus.Rejected:
     case VirtualAccountStatus.Closed:
-      statusText = 'Failed';
-      if (status === KycStatus.Rejected) statusText = 'Rejected';
-      if (status === VirtualAccountStatus.Closed) statusText = 'Closed';
-      statusClasses = 'bg-red-100 text-red-800';
+    case QuoteStatus.Expired:
+      statusText = status;
+      statusClasses = 'bg-[#FEF0F0] text-[#E53535]';
       break;
+      
     case KycStatus.NotSubmitted:
         statusText = 'Not Submitted';
         statusClasses = 'bg-gray-100 text-gray-800';
         break;
+        
     default:
       statusText = 'Unknown';
       statusClasses = 'bg-gray-100 text-gray-800';
@@ -43,7 +45,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
 
   return (
     <span
-      className={`px-4 py-2 text-base font-semibold rounded-lg inline-flex items-center ${statusClasses}`}
+      className={`py-1 px-4 text-base font-medium rounded-full inline-flex items-center justify-center ${statusClasses}`}
     >
       {statusText}
     </span>

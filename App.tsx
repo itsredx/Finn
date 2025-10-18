@@ -7,6 +7,8 @@ import VirtualAccountsPage from './pages/VirtualAccountsPage';
 import TransactionDetailsPage from './pages/TransactionDetailsPage';
 import VirtualAccountDetailsPage from './pages/VirtualAccountDetailsPage';
 import CreateTransferPage from './pages/CreateTransferPage';
+import RequestPayoutPage from './pages/RequestPayoutPage';
+import RatesAndQuotesPage from './pages/RatesAndQuotesPage';
 import { Page, Transaction, VirtualAccount, VirtualAccountStatus } from './types';
 import { ALL_TRANSACTIONS_DATA, VIRTUAL_ACCOUNTS_DATA } from './constants';
 
@@ -91,6 +93,10 @@ const App: React.FC = () => {
         return null;
       case 'create-transfer':
         return <CreateTransferPage onNavigate={handleNavigate} />;
+      case 'request-payout':
+        return <RequestPayoutPage onNavigate={handleNavigate} />;
+      case 'rates-and-quotes':
+        return <RatesAndQuotesPage onNavigate={handleNavigate} />;
       default:
         return <Dashboard onNavigate={handleNavigate} />;
     }

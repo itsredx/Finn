@@ -7,7 +7,9 @@ export type Page =
   | 'kyc'
   | 'create-transfer'
   | 'wallet-transaction-details'
-  | 'virtual-account-details';
+  | 'virtual-account-details'
+  | 'request-payout'
+  | 'rates-and-quotes';
 
 export enum ChangeType {
   Increase = 'increase',
@@ -31,6 +33,11 @@ export enum VirtualAccountStatus {
     Active = 'Active',
     Pending = 'Pending',
     Closed = 'Closed',
+}
+
+export enum QuoteStatus {
+    Active = 'Active',
+    Expired = 'Expired',
 }
 
 export enum TransactionType {

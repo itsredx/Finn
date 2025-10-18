@@ -66,7 +66,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                 icon={<RequestPageIcon />} 
                 label="Request Payout" 
                 description="Withdraw funds to your bank"
-                onClick={() => alert('Request Payout feature coming soon!')} 
+                onClick={() => onNavigate('request-payout')} 
               />
           </div>
 
