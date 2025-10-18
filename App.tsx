@@ -16,7 +16,7 @@ import { Page, Transaction, VirtualAccount, VirtualAccountStatus } from './types
 import { ALL_TRANSACTIONS_DATA, VIRTUAL_ACCOUNTS_DATA } from './constants';
 
 const App: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // demo sign in
   const [currentPage, setCurrentPage] = useState<Page>('signin');
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const [selectedVirtualAccount, setSelectedVirtualAccount] = useState<VirtualAccount | null>(null);
