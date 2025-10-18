@@ -13,7 +13,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
     case TransactionStatus.Completed:
     case KycStatus.Approved:
     case VirtualAccountStatus.Active:
-      statusText = 'Completed';
+      statusText = 'Confirmed';
       if (status === KycStatus.Approved) statusText = 'Approved';
       if (status === VirtualAccountStatus.Active) statusText = 'Active';
       statusClasses = 'bg-green-100 text-green-800';
@@ -43,7 +43,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
 
   return (
     <span
-      className={`px-3 py-1 text-sm font-semibold rounded-full inline-flex items-center ${statusClasses}`}
+      className={`px-4 py-2 text-base font-semibold rounded-lg inline-flex items-center ${statusClasses}`}
     >
       {statusText}
     </span>

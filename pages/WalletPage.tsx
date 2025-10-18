@@ -1,0 +1,46 @@
+import React from 'react';
+import Header from '../components/Header';
+import BalanceCard from '../components/BalanceCard';
+import TransactionsTable from '../components/TransactionsTable';
+import { Page } from '../types';
+import { BALANCES_DATA } from '../constants';
+
+interface WalletPageProps {
+  onNavigate: (page: Page) => void;
+  onViewTransaction: (transactionId: string) => void;
+}
+
+const WalletPage: React.FC<WalletPageProps> = ({ onNavigate, onViewTransaction }) => {
+  return (
+    <div className="bg-[#F6F7F8] min-h-screen font-sans">
+      <Header onNavigate={onNavigate} />
+      <main className="p-8 lg:p-16">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div>
+            <h1 className="text-4xl font-bold text-[#214D76]">Wallet & Transactions</h1>
+            <p className="text-lg text-gray-500 mt-2">View your balances and transaction history.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {BALANCES_DATA.map((balance, index) => (
+              <BalanceCard
+                key={index}
+                currency={balance.currency}
+                balance={balance.balance}
+                icon={balance.icon}
+              />
+            ))}
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">Transaction History</h2>
+            <TransactionsTable onViewTransaction={onViewTransaction} />
+          </div>
+
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default WalletPage;

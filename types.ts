@@ -1,43 +1,80 @@
+import React from 'react';
+
+export type Page = 
+  | 'dashboard'
+  | 'wallet'
+  | 'virtual-accounts'
+  | 'kyc'
+  | 'create-transfer'
+  | 'wallet-transaction-details'
+  | 'virtual-account-details';
 
 export enum ChangeType {
-    Increase,
-    Decrease,
+  Increase = 'increase',
+  Decrease = 'decrease',
 }
-  
-export enum TransactionType {
-    Payout,
-    Deposit,
-}
-  
+
 export enum TransactionStatus {
-    Completed,
-    Pending,
-    Failed,
-}
-  
-export interface Transaction {
-    id: string;
-    type: TransactionType;
-    description: string;
-    details: string;
-    amount: number;
-    date: string;
-    status: TransactionStatus;
+  Completed = 'Completed',
+  Pending = 'Pending',
+  Failed = 'Failed',
 }
 
 export enum KycStatus {
-    NotSubmitted,
-    Pending,
-    Approved,
-    Rejected,
+    Approved = 'Approved',
+    Pending = 'Pending',
+    Rejected = 'Rejected',
+    NotSubmitted = 'Not Submitted',
 }
-  
-export type Page = 'dashboard' | 'kyc' | 'virtual-accounts';
 
 export enum VirtualAccountStatus {
-    Active,
-    Pending,
-    Closed,
+    Active = 'Active',
+    Pending = 'Pending',
+    Closed = 'Closed',
+}
+
+export enum TransactionType {
+  Deposit = 'Deposit',
+  Payout = 'Payout',
+  Transfer = 'Transfer',
+}
+
+export interface Transaction {
+  id: string;
+  transactionId: string;
+  description: string;
+  details: string;
+  amount: number;
+  date: string;
+  fullDate: string;
+  status: TransactionStatus;
+  type: TransactionType;
+  token: string;
+  fee: string;
+  reference: string;
+  totalAmount: string;
+  sender: {
+    walletId: string;
+    businessName: string;
+    accountName: string;
+  };
+  receiver: {
+    walletId: string;
+    businessName: string;
+    accountName: string;
+  };
+  blockchainDetails: {
+    txHash: string;
+    consensusSequence: string;
+    confirmedAt: string;
+  };
+}
+
+export interface Balance {
+    walletId: string;
+    currency: string;
+    balance: string;
+    icon: React.FC;
 }
 
 export interface VirtualAccount {
@@ -48,7 +85,7 @@ export interface VirtualAccount {
     bank: string;
     status: VirtualAccountStatus;
     accountHolder: string;
+    creationDate: string;
     accountNumber: string;
     routingNumber: string;
-    creationDate: string;
 }

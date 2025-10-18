@@ -79,6 +79,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 >
                   <div className="py-1" role="none">
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('dashboard'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Dashboard</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('wallet'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Wallet & Transactions</a>
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('virtual-accounts'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Virtual Accounts</a>
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('kyc'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Complete KYC</a>
                     <div className="border-t border-gray-100 my-1"></div>

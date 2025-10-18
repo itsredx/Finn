@@ -4,7 +4,6 @@ import StatusBadge from '../components/StatusBadge';
 import { Page, VirtualAccount } from '../types';
 import { PlusIcon, BankAccountIcon } from '../components/Icons';
 import CreateVAModal from '../components/CreateVAModal';
-import VirtualAccountDetailsModal from '../components/VirtualAccountDetailsModal';
 
 
 interface VirtualAccountsPageProps {
@@ -12,6 +11,7 @@ interface VirtualAccountsPageProps {
   accounts: VirtualAccount[];
   onAddAccount: (account: { accountName: string; currency: 'USD' | 'EUR'; purpose: 'inbound_invoices' | 'settlements' }) => void;
   onDeleteAccount: (accountId: string) => void;
+  onViewAccountDetails: (accountId: string) => void;
 }
 
 const EmptyState: React.FC<{ onOpenModal: () => void }> = ({ onOpenModal }) => (
@@ -30,8 +30,8 @@ const EmptyState: React.FC<{ onOpenModal: () => void }> = ({ onOpenModal }) => (
 
 const AccountsTable: React.FC<{ 
     accounts: VirtualAccount[];
-    onViewDetails: (account: VirtualAccount) => void;
-}> = ({ accounts, onViewDetails }) => (
+    onViewAccountDetails: (accountId: string) => void;
+}> = ({ accounts, onViewAccountDetails }) => (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1000px]">
@@ -64,7 +64,7 @@ const AccountsTable: React.FC<{
                     <StatusBadge status={account.status} />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap space-x-4">
-                    <button onClick={() => onViewDetails(account)} className="text-[#214D76] font-bold text-base hover:underline">
+                    <button onClick={() => onViewAccountDetails(account.id)} className="text-[#214D76] font-bold text-base hover:underline">
                         View Details
                     </button>
                 </td>
@@ -77,14 +77,8 @@ const AccountsTable: React.FC<{
 );
 
 
-const VirtualAccountsPage: React.FC<VirtualAccountsPageProps> = ({ onNavigate, accounts, onAddAccount, onDeleteAccount }) => {
+const VirtualAccountsPage: React.FC<VirtualAccountsPageProps> = ({ onNavigate, accounts, onAddAccount, onDeleteAccount, onViewAccountDetails }) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [selectedAccount, setSelectedAccount] = useState<VirtualAccount | null>(null);
-
-  const handleDeleteAndCloseModal = (accountId: string) => {
-    onDeleteAccount(accountId);
-    setSelectedAccount(null);
-  };
 
   return (
     <div className="bg-[#F6F7F8] min-h-screen font-sans">
@@ -109,16 +103,11 @@ const VirtualAccountsPage: React.FC<VirtualAccountsPageProps> = ({ onNavigate, a
             {accounts.length === 0 ? (
                 <EmptyState onOpenModal={() => setIsCreateModalOpen(true)} />
             ) : (
-                <AccountsTable accounts={accounts} onViewDetails={setSelectedAccount} />
+                <AccountsTable accounts={accounts} onViewAccountDetails={onViewAccountDetails} />
             )}
         </div>
       </main>
       {isCreateModalOpen && <CreateVAModal onClose={() => setIsCreateModalOpen(false)} onAddAccount={onAddAccount} />}
-      {selectedAccount && <VirtualAccountDetailsModal 
-                            account={selectedAccount} 
-                            onClose={() => setSelectedAccount(null)} 
-                            onDelete={handleDeleteAndCloseModal}
-                          />}
     </div>
   );
 };
