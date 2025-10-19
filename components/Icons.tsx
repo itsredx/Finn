@@ -204,3 +204,56 @@ export const RefreshIcon = () => (
         <path d="M20.49 14.51C19.1774 16.1367 17.4456 17.3867 15.47 18.11C13.4944 18.8333 11.3638 19 9.25 18.6C7.13621 18.2 5.13669 17.2533 3.49 15.87" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 );
+
+export const LockIcon = () => (
+    <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 9V5C4 3.67392 4.52678 2.40215 5.46447 1.46447C6.40215 0.526784 7.67392 0 9 0C10.3261 0 11.5979 0.526784 12.5355 1.46447C13.4732 2.40215 14 3.67392 14 5V9M2 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19V11C18 10.4696 17.7893 9.96086 17.4142 9.58579C17.0391 9.21071 16.5304 9 16 9H2C1.46957 9 0.960859 9.21071 0.585786 9.58579C0.210714 9.96086 0 10.4696 0 11V19C0 19.5304 0.210714 20.0391 0.585786 20.4142C0.960859 20.7893 1.46957 21 2 21Z" fill="white"/>
+    </svg>
+);
+
+export const ExpireIcon = () => (
+    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 21C15.5228 21 20 16.5228 20 11C20 5.47715 15.5228 1 10 1C4.47715 1 0 5.47715 0 11C0 16.5228 4.47715 21 10 21Z" fill="white"/>
+        <path d="M10 5V11L14 15" stroke="#637188" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+);
+
+export const ActiveBadgeIcon = () => (
+    <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="3" cy="3" r="3" fill="#10B981"/>
+    </svg>
+);
+
+export const CalendarIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
+        <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="2"/>
+        <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2"/>
+        <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2"/>
+    </svg>
+);
+
+export const SearchIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2"/>
+        <path d="m21 21-4.35-4.35" stroke="currentColor" strokeWidth="2"/>
+    </svg>
+);
+
+export const FilterIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+);
+
+export const ChevronLeftIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="15,18 9,12 15,6" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+);
+
+export const ChevronDownIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="6,9 12,15 18,9" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+);

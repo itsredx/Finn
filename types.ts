@@ -10,6 +10,9 @@ export type Page =
   | 'virtual-account-details'
   | 'request-payout'
   | 'rates-and-quotes'
+  | 'create-quote'
+  | 'audit-log-viewer'
+  | 'audit-log-details'
   | 'signin'
   | 'signup'
   | 'forgot-password';

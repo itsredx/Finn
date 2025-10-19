@@ -85,7 +85,10 @@ const RatesAndQuotesPage: React.FC<RatesAndQuotesPageProps> = ({ onNavigate }) =
                                 <RefreshIcon />
                                 Refresh
                             </button>
-                            <button className="text-lg font-semibold text-white bg-[#214D76] rounded-lg px-8 py-3 hover:bg-opacity-90 transition-colors shadow-md">
+                            <button 
+                                onClick={() => onNavigate('create-quote')}
+                                className="text-lg font-semibold text-white bg-[#214D76] rounded-lg px-8 py-3 hover:bg-opacity-90 transition-colors shadow-md"
+                            >
                                 Create Quote
                             </button>
                         </div>

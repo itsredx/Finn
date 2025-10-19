@@ -9,6 +9,9 @@ import VirtualAccountDetailsPage from './pages/VirtualAccountDetailsPage';
 import CreateTransferPage from './pages/CreateTransferPage';
 import RequestPayoutPage from './pages/RequestPayoutPage';
 import RatesAndQuotesPage from './pages/RatesAndQuotesPage';
+import CreateQuotePage from './pages/CreateQuotePage';
+import AuditLogViewerPage from './pages/AuditLogViewerPage';
+import AuditLogDetailsPage from './pages/AuditLogDetailsPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -16,7 +19,7 @@ import { Page, Transaction, VirtualAccount, VirtualAccountStatus } from './types
 import { ALL_TRANSACTIONS_DATA, VIRTUAL_ACCOUNTS_DATA } from './constants';
 
 const App: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>('signin');
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const [selectedVirtualAccount, setSelectedVirtualAccount] = useState<VirtualAccount | null>(null);
@@ -121,6 +124,12 @@ const App: React.FC = () => {
         return <RequestPayoutPage onNavigate={handleNavigate} />;
       case 'rates-and-quotes':
         return <RatesAndQuotesPage onNavigate={handleNavigate} />;
+      case 'create-quote':
+        return <CreateQuotePage onNavigate={handleNavigate} />;
+      case 'audit-log-viewer':
+        return <AuditLogViewerPage onNavigate={handleNavigate} />;
+      case 'audit-log-details':
+        return <AuditLogDetailsPage onNavigate={handleNavigate} />;
       default:
         return <Dashboard onNavigate={handleNavigate} />;
     }
