@@ -135,7 +135,7 @@ const App: React.FC = () => {
       case 'audit-log-details':
         return <AuditLogDetailsPage onNavigate={handleNavigate} isVerified={isVerified} />;
       default:
-        return <Dashboard onNavigate={handleNavigate} />;
+        return <Dashboard onNavigate={handleNavigate} isVerified={isVerified} />;
     }
   };
 
