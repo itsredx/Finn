@@ -12,6 +12,7 @@ interface VirtualAccountsPageProps {
   onAddAccount: (account: { accountName: string; currency: 'USD' | 'EUR'; purpose: 'inbound_invoices' | 'settlements' }) => void;
   onDeleteAccount: (accountId: string) => void;
   onViewAccountDetails: (accountId: string) => void;
+  isVerified?: boolean;
 }
 
 const EmptyState: React.FC<{ onOpenModal: () => void }> = ({ onOpenModal }) => (
@@ -77,12 +78,12 @@ const AccountsTable: React.FC<{
 );
 
 
-const VirtualAccountsPage: React.FC<VirtualAccountsPageProps> = ({ onNavigate, accounts, onAddAccount, onDeleteAccount, onViewAccountDetails }) => {
+const VirtualAccountsPage: React.FC<VirtualAccountsPageProps> = ({ onNavigate, accounts, onAddAccount, onDeleteAccount, onViewAccountDetails, isVerified = false }) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   return (
     <div className="bg-[#F6F7F8] min-h-screen font-sans">
-      <Header onNavigate={onNavigate} />
+  <Header onNavigate={onNavigate} isVerified={isVerified} />
       <main className="p-8 lg:p-16">
         <div className="max-w-7xl mx-auto space-y-8">
             <div className="flex justify-between items-center">

@@ -9,14 +9,15 @@ import StatusBadge from '../components/StatusBadge';
 
 interface KycPageProps {
   onNavigate: (page: Page) => void;
+  isVerified?: boolean;
 }
 
-const KycPage: React.FC<KycPageProps> = ({ onNavigate }) => {
-  const currentKycStatus = KycStatus.NotSubmitted; 
+const KycPage: React.FC<KycPageProps> = ({ onNavigate, isVerified = false }) => {
+  const currentKycStatus = isVerified ? KycStatus.Approved : KycStatus.NotSubmitted;
 
   return (
     <div className="bg-[#F6F7F8] min-h-screen font-inter flex flex-col">
-      <Header onNavigate={onNavigate} />
+  <Header onNavigate={onNavigate} isVerified={isVerified} />
       <main className="p-8 lg:p-16 flex-grow">
         <div className="max-w-7xl mx-auto space-y-12">
           
@@ -30,12 +31,12 @@ const KycPage: React.FC<KycPageProps> = ({ onNavigate }) => {
           <section className="space-y-6">
             <h2 className="text-3xl font-bold text-[#214D76]">Business Information Form</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-              <FormField label="Business Name" placeholder="Enter business name" />
-              <FormField label="Business Registration Number" placeholder="Enter registration number" />
-              <FormField label="Date of Incorporation" placeholder="Select date" type="date" />
-              <FormField label="Country of Incorporation" placeholder="Select country" />
+              <FormField label="Business Name" placeholder="Enter business name" readOnly={isVerified} />
+              <FormField label="Business Registration Number" placeholder="Enter registration number" readOnly={isVerified} />
+              <FormField label="Date of Incorporation" placeholder="Select date" type="date" readOnly={isVerified} />
+              <FormField label="Country of Incorporation" placeholder="Select country" readOnly={isVerified} />
             </div>
-            <FormField label="Business Address" placeholder="Enter full business address" />
+            <FormField label="Business Address" placeholder="Enter full business address" readOnly={isVerified} />
           </section>
 
           {/* KYC Document Upload */}
@@ -46,23 +47,29 @@ const KycPage: React.FC<KycPageProps> = ({ onNavigate }) => {
                 icon={<IdCardIcon />}
                 title="Certificate of Incorporation"
                 description="PDF, PNG, or JPG. Max 5MB."
+                readOnly={isVerified}
               />
               <FileUploadCard 
                 icon={<LocationIcon />}
                 title="Proof of Address"
                 description="Utility bill or bank statement."
+                readOnly={isVerified}
               />
               <FileUploadCard 
                 icon={<BusinessIcon />}
                 title="Business License"
                 description="If applicable."
+                readOnly={isVerified}
               />
             </div>
           </section>
 
           {/* Action Buttons */}
           <div className="flex items-center justify-start gap-6 pt-6">
-            <button className="bg-[#00B894] text-white font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-opacity-90 transition-colors">
+            <button
+              disabled={isVerified}
+              className={`font-semibold py-3 px-10 rounded-lg shadow-md transition-colors ${isVerified ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#00B894] text-white hover:bg-opacity-90'}`}
+            >
               Submit KYC
             </button>
             <button 

@@ -5,9 +5,10 @@ import { ArrowBackIcon, LockIcon, ExpireIcon, ActiveBadgeIcon } from '../compone
 
 interface CreateQuotePageProps {
   onNavigate: (page: Page) => void;
+  isVerified?: boolean;
 }
 
-const CreateQuotePage: React.FC<CreateQuotePageProps> = ({ onNavigate }) => {
+const CreateQuotePage: React.FC<CreateQuotePageProps> = ({ onNavigate, isVerified = false }) => {
   const [minutes, setMinutes] = useState(4);
   const [seconds, setSeconds] = useState(32);
 
@@ -28,7 +29,7 @@ const CreateQuotePage: React.FC<CreateQuotePageProps> = ({ onNavigate }) => {
 
   return (
     <div className="bg-[#F6F7F8] min-h-screen font-inter">
-      <Header onNavigate={onNavigate} />
+  <Header onNavigate={onNavigate} isVerified={isVerified} />
       
       <main className="p-8 lg:p-16">
         <div className="max-w-7xl mx-auto space-y-8">

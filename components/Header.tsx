@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { LogoIcon, BellIcon, DropdownArrowIcon, WarningIconSmall } from './Icons';
+import { useIsVerifiedContext } from '../context/VerifiedContext';
 import { Page } from '../types';
 
 interface HeaderProps {
   onNavigate: (page: Page) => void;
+  isVerified?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
+const Header: React.FC<HeaderProps> = ({ onNavigate, isVerified }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const ctxVerified = useIsVerifiedContext();
+  const effectiveVerified = typeof isVerified === 'boolean' ? isVerified : ctxVerified;
 
   const toggleDropdown = () => {
     setIsDropdownOpen(prev => !prev);
@@ -60,10 +65,16 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 />
                 <div className="text-left">
                   <p className="font-bold text-base text-black">John Doe</p>
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm font-medium text-[#991B1B]">Unverified</span>
-                    <WarningIconSmall />
-                  </div>
+                  {!effectiveVerified ? (
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm font-medium text-[#991B1B]">Unverified</span>
+                      <WarningIconSmall />
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm font-medium text-[#00B894]">Verified</span>
+                    </div>
+                  )}
                 </div>
                 <div className={`text-gray-500 transition-transform duration-300 ease-in-out ${isDropdownOpen ? 'rotate-180' : ''}`}>
                   <DropdownArrowIcon />

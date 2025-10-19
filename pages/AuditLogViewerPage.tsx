@@ -5,6 +5,7 @@ import { ArrowBackIcon, DropdownArrowIcon, CalendarIcon, SearchIcon, FilterIcon,
 
 interface AuditLogViewerPageProps {
   onNavigate: (page: Page) => void;
+  isVerified?: boolean;
 }
 
 interface AuditLogEntry {
@@ -53,7 +54,7 @@ const MOCK_AUDIT_LOG_DATA: AuditLogEntry[] = [
   }
 ];
 
-const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate }) => {
+const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate, isVerified = false }) => {
   const [businessId, setBusinessId] = useState('');
   const [eventType, setEventType] = useState('All Event Types');
   const [startDate, setStartDate] = useState('2023-10-05');
@@ -76,7 +77,7 @@ const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate }) =
 
   return (
     <div className="min-h-screen bg-[#F6F7F8]">
-      <Header onNavigate={onNavigate} />
+  <Header onNavigate={onNavigate} isVerified={isVerified} />
       
       <div className="max-w-7xl mx-auto px-8 py-12">
         {/* Header Section */}
@@ -98,13 +99,13 @@ const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate }) =
         </div>
 
         {/* Filters Section */}
-        <div className="bg-white rounded-[20px] border border-[#637188] shadow-md p-8 mb-12">
-          <div className="flex items-end gap-7 mb-8">
-            <div className="flex gap-3">
+        <div className="bg-white rounded-[20px] border border-[#637188]/20 shadow-md px-5 py-8 mb-12">
+          <div className="flex items-end gap-4">
+            <div className="flex gap-4">
               {/* Business ID Input */}
               <div className="flex flex-col gap-2">
                 <label className="text-xl font-medium text-black font-inter">Business ID</label>
-                <div className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91] rounded-[15px] px-4 flex items-center">
+                <div className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91]/20 rounded-[15px] px-4 flex items-center">
                   <input
                     type="text"
                     value={businessId}
@@ -121,14 +122,14 @@ const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate }) =
                 <div className="relative">
                   <button
                     onClick={() => setIsEventTypeOpen(!isEventTypeOpen)}
-                    className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91] rounded-[15px] px-4 flex items-center justify-between"
+                    className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91]/20 rounded-[15px] px-4 flex items-center justify-between"
                   >
                     <span className="text-xl font-medium text-black font-inter">{eventType}</span>
                     <DropdownArrowIcon />
                   </button>
                   
                   {isEventTypeOpen && (
-                    <div className="absolute top-full mt-1 w-full bg-white border border-[#8D8F91] rounded-[15px] shadow-lg z-10">
+                    <div className="absolute top-full mt-1 w-full bg-white border border-[#8D8F91]/20 rounded-[15px] shadow-lg z-10">
                       {eventTypeOptions.map((option) => (
                         <button
                           key={option}
@@ -149,7 +150,7 @@ const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate }) =
               {/* Date Range */}
               <div className="flex flex-col gap-2">
                 <label className="text-xl font-medium text-black font-inter">Date Range</label>
-                <div className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91] rounded-[15px] px-4 flex items-center gap-4">
+                <div className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91]/20 rounded-[15px] px-4 flex items-center gap-4">
                   <CalendarIcon />
                   <input
                     type="date"
@@ -163,7 +164,10 @@ const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate }) =
 
             {/* End Date */}
             <div className="flex flex-col gap-2">
-              <div className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91] rounded-[15px] px-4 flex items-center gap-4">
+              <div className="h-[60px] invisible">
+                <label className="text-xl font-medium text-black font-inter opacity-0">Date Range</label>
+              </div>
+              <div className="w-[280px] h-[60px] bg-[#F6F7F8] border border-[#8D8F91]/20 rounded-[15px] px-4 flex items-center gap-4">
                 <CalendarIcon />
                 <input
                   type="date"

@@ -10,6 +10,7 @@ import { SendIcon, DepositIcon, RequestPageIcon } from '../components/Icons';
 
 interface DashboardProps {
   onNavigate: (page: Page) => void;
+  isVerified?: boolean;
 }
 
 const ActionButton: React.FC<{ icon: React.ReactNode; label: string; description: string; onClick: () => void;}> = ({ icon, label, description, onClick }) => (
@@ -28,13 +29,13 @@ const ActionButton: React.FC<{ icon: React.ReactNode; label: string; description
 );
 
 
-const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
+const Dashboard: React.FC<DashboardProps> = ({ onNavigate, isVerified = false }) => {
   return (
     <div className="bg-[#F6F7F8] min-h-screen font-sans">
-      <Header onNavigate={onNavigate} />
+      <Header onNavigate={onNavigate} isVerified={isVerified} />
       <main className="p-8 lg:p-16">
         <div className="max-w-7xl mx-auto space-y-8">
-          <KycBanner onCompleteKyc={() => onNavigate('kyc')} />
+          {!isVerified && <KycBanner onCompleteKyc={() => onNavigate('kyc')} />}
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {DASHBOARD_STATS_DATA.map((stat, index) => (

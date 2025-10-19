@@ -5,10 +5,12 @@ import StatusBadge from '../components/StatusBadge';
 import { SendIcon } from '../components/Icons';
 import SimulateDepositModal from '../components/SimulateDepositModal';
 
+
 interface VirtualAccountDetailsPageProps {
   account: VirtualAccount;
   onNavigate: (page: Page) => void;
   onDelete: (accountId: string) => void;
+  isVerified?: boolean;
 }
 
 const InfoRow: React.FC<{ label: string; value: string }> = ({ label, value }) => (
@@ -18,7 +20,7 @@ const InfoRow: React.FC<{ label: string; value: string }> = ({ label, value }) =
     </div>
 );
 
-const VirtualAccountDetailsPage: React.FC<VirtualAccountDetailsPageProps> = ({ account, onNavigate, onDelete }) => {
+const VirtualAccountDetailsPage: React.FC<VirtualAccountDetailsPageProps> = ({ account, onNavigate, onDelete, isVerified = false }) => {
   const [isSimulateDepositModalOpen, setIsSimulateDepositModalOpen] = useState(false);
 
   const handleDelete = () => {
@@ -30,7 +32,7 @@ const VirtualAccountDetailsPage: React.FC<VirtualAccountDetailsPageProps> = ({ a
   return (
     <>
       <div className="bg-[#F6F7F8] min-h-screen font-sans">
-        <Header onNavigate={onNavigate} />
+    <Header onNavigate={onNavigate} isVerified={isVerified} />
         <main className="p-8 lg:p-16">
           <div className="max-w-7xl mx-auto space-y-8">
               <div className="flex justify-between items-center">

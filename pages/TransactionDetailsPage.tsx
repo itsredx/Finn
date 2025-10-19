@@ -5,8 +5,9 @@ import StatusBadge from '../components/StatusBadge';
 import { ArrowBackIcon, CopyOutlineIcon, DownloadIcon } from '../components/Icons';
 
 interface TransactionDetailsPageProps {
-  transaction: Transaction;
-  onNavigate: (page: Page) => void;
+    transaction: Transaction;
+    onNavigate: (page: Page) => void;
+    isVerified?: boolean;
 }
 
 const TypeBadge: React.FC<{ type: string }> = ({ type }) => (
@@ -15,7 +16,7 @@ const TypeBadge: React.FC<{ type: string }> = ({ type }) => (
     </div>
 );
 
-const TransactionDetailsPage: React.FC<TransactionDetailsPageProps> = ({ transaction, onNavigate }) => {
+const TransactionDetailsPage: React.FC<TransactionDetailsPageProps> = ({ transaction, onNavigate, isVerified = false }) => {
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const TransactionDetailsPage: React.FC<TransactionDetailsPageProps> = ({ transac
 
     return (
         <div className="bg-[#F6F7F8] min-h-screen font-sans">
-            <Header onNavigate={onNavigate} />
+            <Header onNavigate={onNavigate} isVerified={isVerified} />
             <main className="p-8 lg:p-16">
                 <div className="max-w-7xl mx-auto space-y-8">
                     <div className="flex justify-between items-center">

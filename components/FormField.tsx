@@ -4,9 +4,10 @@ interface FormFieldProps {
   label: string;
   placeholder: string;
   type?: string;
+  readOnly?: boolean;
 }
 
-const FormField: React.FC<FormFieldProps> = ({ label, placeholder, type = 'text' }) => {
+const FormField: React.FC<FormFieldProps> = ({ label, placeholder, type = 'text', readOnly = false }) => {
   const isDateInput = type === 'date';
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,6 +35,7 @@ const FormField: React.FC<FormFieldProps> = ({ label, placeholder, type = 'text'
         placeholder={placeholder}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        readOnly={readOnly}
         className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#214D76] focus:border-transparent transition-shadow text-gray-700"
       />
     </div>

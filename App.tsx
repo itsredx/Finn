@@ -12,6 +12,7 @@ import RatesAndQuotesPage from './pages/RatesAndQuotesPage';
 import CreateQuotePage from './pages/CreateQuotePage';
 import AuditLogViewerPage from './pages/AuditLogViewerPage';
 import AuditLogDetailsPage from './pages/AuditLogDetailsPage';
+import { VerifiedProvider } from './context/VerifiedContext';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -21,6 +22,7 @@ import { ALL_TRANSACTIONS_DATA, VIRTUAL_ACCOUNTS_DATA } from './constants';
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>('signin');
+  const [isVerified, setIsVerified] = useState<boolean>(true);
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const [selectedVirtualAccount, setSelectedVirtualAccount] = useState<VirtualAccount | null>(null);
   const [virtualAccounts, setVirtualAccounts] = useState<VirtualAccount[]>(VIRTUAL_ACCOUNTS_DATA);
@@ -88,11 +90,11 @@ const App: React.FC = () => {
     // Authenticated pages
     switch (currentPage) {
       case 'dashboard':
-        return <Dashboard onNavigate={handleNavigate} />;
+        return <Dashboard onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'kyc':
-        return <KycPage onNavigate={handleNavigate} />;
+        return <KycPage onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'wallet':
-        return <WalletPage onNavigate={handleNavigate} onViewTransaction={handleViewTransaction} />;
+        return <WalletPage onNavigate={handleNavigate} onViewTransaction={handleViewTransaction} isVerified={isVerified} />;
       case 'virtual-accounts':
         return <VirtualAccountsPage 
                     onNavigate={handleNavigate} 
@@ -100,42 +102,48 @@ const App: React.FC = () => {
                     onAddAccount={handleAddAccount}
                     onDeleteAccount={handleDeleteAccount}
                     onViewAccountDetails={handleViewAccountDetails}
+                    isVerified={isVerified}
                 />;
       case 'wallet-transaction-details':
         if (selectedTransaction) {
-          return <TransactionDetailsPage transaction={selectedTransaction} onNavigate={handleNavigate} />;
+          return <TransactionDetailsPage transaction={selectedTransaction} onNavigate={handleNavigate} isVerified={isVerified} />;
         }
         // Fallback to wallet page if no transaction is selected
         handleNavigate('wallet');
         return null;
-      case 'virtual-account-details':
+    case 'virtual-account-details':
         if (selectedVirtualAccount) {
-            return <VirtualAccountDetailsPage 
-                        account={selectedVirtualAccount} 
-                        onNavigate={handleNavigate} 
-                        onDelete={handleDeleteAccount} 
-                    />;
+      return <VirtualAccountDetailsPage 
+            account={selectedVirtualAccount} 
+            onNavigate={handleNavigate} 
+            onDelete={handleDeleteAccount} 
+            isVerified={isVerified}
+          />;
         }
         handleNavigate('virtual-accounts');
         return null;
       case 'create-transfer':
-        return <CreateTransferPage onNavigate={handleNavigate} />;
+        return <CreateTransferPage onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'request-payout':
-        return <RequestPayoutPage onNavigate={handleNavigate} />;
+        return <RequestPayoutPage onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'rates-and-quotes':
-        return <RatesAndQuotesPage onNavigate={handleNavigate} />;
+        return <RatesAndQuotesPage onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'create-quote':
-        return <CreateQuotePage onNavigate={handleNavigate} />;
+        return <CreateQuotePage onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'audit-log-viewer':
-        return <AuditLogViewerPage onNavigate={handleNavigate} />;
+        return <AuditLogViewerPage onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'audit-log-details':
-        return <AuditLogDetailsPage onNavigate={handleNavigate} />;
+        return <AuditLogDetailsPage onNavigate={handleNavigate} isVerified={isVerified} />;
       default:
         return <Dashboard onNavigate={handleNavigate} />;
     }
   };
 
-  return <>{renderPage()}</>;
+  return (
+    <VerifiedProvider value={isVerified}>
+      {renderPage()}
+    </VerifiedProvider>
+  );
 };
 
 export default App;

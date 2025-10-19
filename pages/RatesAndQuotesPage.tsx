@@ -5,7 +5,8 @@ import { Page, QuoteStatus } from '../types';
 import { ArrowBackIcon, TrendUpIcon, RefreshIcon } from '../components/Icons';
 
 interface RatesAndQuotesPageProps {
-  onNavigate: (page: Page) => void;
+    onNavigate: (page: Page) => void;
+    isVerified?: boolean;
 }
 
 const quoteHistoryData = [
@@ -38,7 +39,7 @@ const quoteHistoryData = [
   },
 ];
 
-const RatesAndQuotesPage: React.FC<RatesAndQuotesPageProps> = ({ onNavigate }) => {
+const RatesAndQuotesPage: React.FC<RatesAndQuotesPageProps> = ({ onNavigate, isVerified = false }) => {
     const [timer, setTimer] = useState(59);
 
     useEffect(() => {
@@ -53,7 +54,7 @@ const RatesAndQuotesPage: React.FC<RatesAndQuotesPageProps> = ({ onNavigate }) =
 
     return (
         <div className="bg-[#F6F7F8] min-h-screen font-inter">
-            <Header onNavigate={onNavigate} />
+            <Header onNavigate={onNavigate} isVerified={isVerified} />
             <main className="p-8 lg:p-16">
                 <div className="max-w-7xl mx-auto space-y-12">
                     <div className="flex justify-between items-start">

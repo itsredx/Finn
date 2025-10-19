@@ -5,9 +5,10 @@ interface FileUploadCardProps {
   icon: ReactNode;
   title: string;
   description: string;
+  readOnly?: boolean;
 }
 
-const FileUploadCard: React.FC<FileUploadCardProps> = ({ icon, title, description }) => {
+const FileUploadCard: React.FC<FileUploadCardProps> = ({ icon, title, description, readOnly = false }) => {
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -40,9 +41,10 @@ const FileUploadCard: React.FC<FileUploadCardProps> = ({ icon, title, descriptio
       {!file ? (
         <button 
           onClick={handleButtonClick}
-          className="w-full max-w-[160px] bg-gray-200 text-black font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors"
+          disabled={readOnly}
+          className={`w-full max-w-[160px] ${readOnly ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-gray-200 text-black hover:bg-gray-300'} font-semibold py-2 px-4 rounded-lg transition-colors`}
         >
-          Upload File
+          {readOnly ? 'Upload Disabled' : 'Upload File'}
         </button>
       ) : (
         <div className="w-full max-w-[200px] bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg flex items-center justify-center gap-2">

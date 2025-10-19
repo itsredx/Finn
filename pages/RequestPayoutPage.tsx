@@ -6,6 +6,7 @@ import { ArrowBackIcon, WalletIcon, UsdcCoinIcon, CopyPayoutIcon, ArrowRightPayo
 
 interface RequestPayoutPageProps {
   onNavigate: (page: Page) => void;
+  isVerified?: boolean;
 }
 
 const payoutHistoryData = [
@@ -38,7 +39,7 @@ const payoutHistoryData = [
   },
 ];
 
-const RequestPayoutPage: React.FC<RequestPayoutPageProps> = ({ onNavigate }) => {
+const RequestPayoutPage: React.FC<RequestPayoutPageProps> = ({ onNavigate, isVerified = false }) => {
   const idempotencyKey = "a1b2c3d4-e5f6-7890-1234-5645fgj45g";
   const [copied, setCopied] = useState(false);
 
@@ -50,7 +51,7 @@ const RequestPayoutPage: React.FC<RequestPayoutPageProps> = ({ onNavigate }) => 
 
   return (
     <div className="bg-[#F6F7F8] min-h-screen font-inter">
-      <Header onNavigate={onNavigate} />
+  <Header onNavigate={onNavigate} isVerified={isVerified} />
       <main className="p-8 lg:p-16">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="flex justify-between items-start">

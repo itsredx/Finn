@@ -6,9 +6,10 @@ import { BALANCES_DATA } from '../constants';
 
 interface CreateTransferPageProps {
   onNavigate: (page: Page) => void;
+  isVerified?: boolean;
 }
 
-const CreateTransferPage: React.FC<CreateTransferPageProps> = ({ onNavigate }) => {
+const CreateTransferPage: React.FC<CreateTransferPageProps> = ({ onNavigate, isVerified = false }) => {
   const [fromWallet, setFromWallet] = useState<string>(BALANCES_DATA[0]?.walletId || '');
   const [toWallet, setToWallet] = useState('');
   const [token, setToken] = useState('USDC');
@@ -38,7 +39,7 @@ const CreateTransferPage: React.FC<CreateTransferPageProps> = ({ onNavigate }) =
 
   return (
     <div className="bg-[#F6F7F8] min-h-screen font-sans">
-      <Header onNavigate={onNavigate} />
+  <Header onNavigate={onNavigate} isVerified={isVerified} />
       <main className="p-8 lg:p-16">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="flex justify-between items-center">
