@@ -13,6 +13,7 @@ export type Page =
   | 'create-quote'
   | 'audit-log-viewer'
   | 'audit-log-details'
+  | 'webhooks'
   | 'signin'
   | 'signup'
   | 'forgot-password';

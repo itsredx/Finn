@@ -12,6 +12,7 @@ import RatesAndQuotesPage from './pages/RatesAndQuotesPage';
 import CreateQuotePage from './pages/CreateQuotePage';
 import AuditLogViewerPage from './pages/AuditLogViewerPage';
 import AuditLogDetailsPage from './pages/AuditLogDetailsPage';
+import WebhooksPage from './pages/WebhooksPage';
 import { VerifiedProvider } from './context/VerifiedContext';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
@@ -134,6 +135,8 @@ const App: React.FC = () => {
         return <AuditLogViewerPage onNavigate={handleNavigate} isVerified={isVerified} />;
       case 'audit-log-details':
         return <AuditLogDetailsPage onNavigate={handleNavigate} isVerified={isVerified} />;
+      case 'webhooks':
+        return <WebhooksPage onNavigate={handleNavigate} isVerified={isVerified} />;
       default:
         return <Dashboard onNavigate={handleNavigate} isVerified={isVerified} />;
     }

@@ -94,6 +94,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, isVerified }) => {
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('virtual-accounts'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Virtual Accounts</a>
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('rates-and-quotes'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Rates & Quotes</a>
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('audit-log-viewer'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Audit Log Viewer</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('webhooks'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Webhooks & Notifications</a>
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavigation('kyc'); }} className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Complete KYC</a>
                     <div className="border-t border-gray-100 my-1"></div>
                     <a href="#" className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 transition-colors" role="menuitem">Account settings</a>
