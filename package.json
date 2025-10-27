@@ -3,10 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "node -e \"try { require('fs').rmSync('node_modules/@rollup/rollup-linux-x64-gnu', { recursive: true, force: true }); } catch (e) {}\"",
+    "render-build": "npm install && npm run build"
   },
   "dependencies": {
     "react": "^19.2.0",
