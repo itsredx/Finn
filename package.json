@@ -4,23 +4,26 @@
   "version": "0.0.0",
   "type": "module",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --emptyOutDir",
     "preview": "vite preview",
-    "postinstall": "node -e \"try { require('fs').rmSync('node_modules/@rollup/rollup-linux-x64-gnu', { recursive: true, force: true }); } catch (e) {}\"",
     "render-build": "npm install && npm run build"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "framer-motion": "10.12.16"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "@types/node": "18.17.0",
+    "@vitejs/plugin-react": "4.0.0",
+    "typescript": "5.0.4",
+    "vite": "4.3.9",
+    "@rollup/plugin-commonjs": "24.1.0",
+    "@rollup/plugin-node-resolve": "15.0.2",
+    "rollup": "3.21.0"
   }
 }
