@@ -91,7 +91,7 @@ const AuditLogViewerPage: React.FC<AuditLogViewerPageProps> = ({ onNavigate, isV
           
           <button 
             onClick={() => onNavigate('dashboard')}
-            className="flex items-center gap-5 text-[#637188] hover:text-[#214D76] transition-colors"
+            className="flex items-center gap-4 text-xl font-medium text-[#637188] hover:text-[#214D76] whitespace-nowrap"
           >
             <ArrowBackIcon />
             <span className="text-xl font-medium">Back to Dashboard</span>

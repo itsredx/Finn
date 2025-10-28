@@ -120,7 +120,7 @@ const WebhooksPage: React.FC<WebhooksPageProps> = ({ onNavigate, isVerified = fa
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
               <h2 className="font-semibold text-lg text-gray-800 mb-4">Secret Management</h2>
               <p className="text-gray-500 mb-4">Your webhook secret is used to verify that incoming requests are from our service. Use it to compute an HMAC signature of the request payload.</p>
-              <button onClick={copyDocs} className="w-full border border-gray-200 rounded-md p-3 text-[#214D76] flex items-center justify-center gap-2"><CopyIcon /> Copy Docs URL</button>
+              <button onClick={copyDocs} className="w-full border border-gray-200 rounded-md p-3 text-[#214D76] flex items-center justify-center gap-2"><CopyIcon /> Go to Docs</button>
             </div>
           </div>
 

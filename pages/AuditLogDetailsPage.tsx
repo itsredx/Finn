@@ -33,7 +33,7 @@ const AuditLogDetailsPage: React.FC<AuditLogDetailsPageProps> = ({ onNavigate, a
         <h1 className="text-[32px] font-black text-[#214D76] font-inter">Audit Log Details</h1>
         <button 
           onClick={() => onNavigate('audit-log-viewer')}
-          className="flex items-center gap-5 text-[#637188] hover:text-[#214D76] transition-colors"
+          className="flex items-center gap-4 text-xl font-medium text-[#637188] hover:text-[#214D76] whitespace-nowrap"
         >
           <ArrowBackIcon />
           <span className="text-xl font-medium">Back to Audit Log</span>

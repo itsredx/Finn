@@ -34,7 +34,7 @@ const CreateQuotePage: React.FC<CreateQuotePageProps> = ({ onNavigate, isVerifie
       <main className="p-8 lg:p-16">
         <div className="max-w-7xl mx-auto space-y-8">
           {/* Header Section */}
-          <div className="space-y-6">
+          <div className="flex justify-between items-start">
             {/* Title and Description */}
             <div className="space-y-3">
               <h1 className="text-[32px] font-black text-[#214D76]">Create Quote</h1>

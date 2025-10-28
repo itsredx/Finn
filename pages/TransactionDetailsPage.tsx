@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { Transaction, Page } from '../types';
 import StatusBadge from '../components/StatusBadge';
-import { ArrowBackIcon, CopyOutlineIcon, DownloadIcon } from '../components/Icons';
+import { ArrowBackIcon, CopyIcon, CopyOutlineIcon, DownloadIcon } from '../components/Icons';
 
 interface TransactionDetailsPageProps {
     transaction: Transaction;
@@ -40,7 +40,7 @@ const TransactionDetailsPage: React.FC<TransactionDetailsPageProps> = ({ transac
                             <h1 className="text-4xl font-bold text-[#214D76]">Transaction Details</h1>
                             <p className="text-lg text-gray-500 mt-2">Track the complete journey of your transfer.</p>
                         </div>
-                        <button onClick={() => onNavigate('wallet')} className="text-lg text-gray-500 hover:text-gray-800 flex items-center gap-3">
+                        <button onClick={() => onNavigate('wallet')} className="flex items-center gap-4 text-xl font-medium text-[#637188] hover:text-[#214D76] whitespace-nowrap">
                             <ArrowBackIcon />
                             Back to Transaction
                         </button>
@@ -139,7 +139,7 @@ const TransactionDetailsPage: React.FC<TransactionDetailsPageProps> = ({ transac
                                 <div className="flex items-center gap-3">
                                     <span className="text-lg font-medium text-black font-mono">{transaction.blockchainDetails.txHash}</span>
                                     <button onClick={() => handleCopyToClipboard(transaction.blockchainDetails.txHash)} title="Copy hash" className="text-gray-600 hover:text-black">
-                                        <CopyOutlineIcon />
+                                        <CopyIcon />
                                     </button>
                                 </div>
                             </div>
